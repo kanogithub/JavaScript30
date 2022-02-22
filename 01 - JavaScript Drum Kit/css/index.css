@@ -1,0 +1,44 @@
+body {
+  font-family: ProximaNova,Arial,Sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #1d1d1d;
+  background: linear-gradient(to right, hsl(200, 50%, 50%) , hsl(100, 50%, 50%));
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  width: 1226px;
+  margin: 0 auto;
+  height: 70vh;
+  align-content: center;
+  grid-gap: 50px;
+}
+
+.playfield {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0.25em;
+  border: 2px solid #3d3d3d;
+  padding: 1rem;
+}
+
+.playfield kbd {
+  font-weight: bolder;
+  font-size: larger;
+  margin: 0.4rem 0 0.15rem 0;
+}
+
+.playfield span {
+  margin-top: 0.25rem;
+  font-style: italic;
+  font-weight: 100;
+  color: rgb(248, 224, 85);
+}
+
+.play {
+  box-shadow: 0 0 15px 10px rgb(129, 245, 93);
+  transition: all 100ms;
+}
