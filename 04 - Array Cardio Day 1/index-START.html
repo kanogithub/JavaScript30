@@ -65,19 +65,19 @@
     // 7. sort Exercise
     // Sort the people alphabetically by last name
     console.log('Sort by last name:')
-    console.log(people.sort((a, b) => a.split(', ')[0] > b.split(', ')[0] ? 1 : -1))
+    console.log(people.sort((a, b) => a.split(', ')[0] > b.split(', ')[0] ? 1 : a.split(', ')[0] < b.split(', ')[0] ? -1 : 0))
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
-    (function() {
-      const ans = data.reduce((sum, type) => {
-        const hasType = Object.keys(sum)
-        sum[type] = hasType.includes(type) ? sum[type] + 1 : 1
-        return sum
-      }, {})
-      console.log(ans)
-    })()
+    // const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+    // (function() {
+    //   const ans = data.reduce((sum, type) => {
+    //     const hasType = Object.keys(sum)
+    //     sum[type] = hasType.includes(type) ? sum[type] + 1 : 1
+    //     return sum
+    //   }, {})
+    //   console.log(ans)
+    // })()
   </script>
 </body>
 </html>
