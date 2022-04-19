@@ -17,6 +17,7 @@
     
     body {
       margin: 0;
+      overflow: hidden;
     }
     
     *, *:before, *:after {
@@ -25,17 +26,18 @@
 
     .panels {
       min-height: 100vh;
-      overflow: hidden;
+      display: flex;
     }
 
     .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       background: #6B0F9C;
       box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
       color: white;
       text-align: center;
-      align-items: center;
-      /* Safari transitionend event.propertyName === flex */
-      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      justify-content: center;
       transition:
         font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
         flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
@@ -71,6 +73,17 @@
 
     .panel.open {
       font-size: 40px;
+      flex: 5;
+    }
+
+    .panel p:nth-child(1) {
+      transform: translateY(-100vh);
+    }
+    .panel p:nth-child(3) {
+      transform: translateY(100vh);
+    }
+    .panel.actived p:where(:nth-child(1), :nth-child(3)) {
+      transform: translateY(0);
     }
 
   </style>
@@ -105,10 +118,26 @@
   </div>
 
   <script>
+    ;(function(){
+      const panels = Array.from(document.querySelectorAll('.panel'))
 
+      const toggleOpen = (e) => e.currentTarget.classList.toggle('open')
+      const toggleActived = (e) => {
+        if (e.propertyName.includes('flex')) e.target.classList.toggle('actived')
+      }
+      
+      panels.forEach(panel => panel.addEventListener('click', toggleOpen))
+      panels.forEach(panel => panel.addEventListener('transitionend', toggleActived))
+    })()
+    
+    /*  學到
+        1. event propertyName 可以用來偵測事件時機
+        一開始使用 transitionend 事件時, 會偵測到許多事件同時被觸發
+        因此 actived 開了又關, 所以要把 toggle 放在某一事件完成後再觸發
+        這樣才不會被多次觸發
+
+        2. flex 可以用數字來表現 glow 的比例, 而不是只有 auto, content 或 指定大小
+    */
   </script>
-
-
-
 </body>
 </html>
