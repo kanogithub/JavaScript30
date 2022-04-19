@@ -123,7 +123,12 @@
 
       const toggleOpen = (e) => e.currentTarget.classList.toggle('open')
       const toggleActived = (e) => {
-        if (e.propertyName.includes('flex')) e.target.classList.toggle('actived')
+        if (e.propertyName.includes('flex')) {
+          const elemClassList = e.currentTarget.classList
+          elemClassList.contains('open') ?
+            elemClassList.add('actived') :
+            elemClassList.remove('actived')
+        }
       }
       
       panels.forEach(panel => panel.addEventListener('click', toggleOpen))
