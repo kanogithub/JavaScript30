@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪💪</title>
 </head>
+
 <body>
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
@@ -26,16 +28,36 @@
 
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
+    const isSomeOneOver19 = people.some(person => (new Date().getFullYear() - person.year) > 19)
+    console.log({ isSomeOneOver19 })
+
     // Array.prototype.every() // is everyone 19 or older?
+    const isEveryOneOver19 = people.every(person => (new Date().getFullYear() - person.year) > 19)
+    console.log({ isEveryOneOver19 })
 
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
+    const getComment = comments.find(comment => comment.id === 823423)
+    console.log(getComment)
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+    // delete way
+    const commentIndex = comments.findIndex(comment => comment === getComment)
+    delete comments[commentIndex]
+    console.log('to be empty', comments)
+
+    // filter way
+    const newComments1 = comments.filter(comment => comment)
+    console.log('better way with filter', newComments1)
+
+    // slice way
+    const newComments2 = [...comments.slice(0, commentIndex), ...comments.slice(commentIndex + 1)]
+    console.log('splice way', newComments2)
 
   </script>
 </body>
+
 </html>
