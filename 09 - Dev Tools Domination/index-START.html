@@ -77,18 +77,24 @@
     console.count('Wes')
 
     // timing
+    let count
     console.time('test1')
-    let i, j
-    for (i = 0; i < 100000000; i++) {
-      j++
+    for (let i = 0; i < 100000000; i++) {
+      count++
     }
     console.timeEnd('test1')
 
-    console.time('test2')
-    for (let k = 0; k < 100000000; k++) {
-      j++
+    {
+      let count
+      console.time('test2')
+      for (let i = 0; i < 100000000; i++) {
+        count++
+      }
+      console.timeEnd('test2')
     }
-    console.timeEnd('test2')
+
+    // output: test1: 1051.298828125 ms
+    // output: test2: 122.171875 ms
 
   </script>
 </body>
