@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Console Tricks!</title>
 </head>
+
 <body>
 
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
@@ -17,30 +19,78 @@
       p.style.fontSize = '50px';
     }
 
+    let console = {
+      isDev: true,
+      ...window.console,
+      log(...args) {
+        if (!this.isDev) return
+        window.console.log(...args)
+      },
+      dir(...args) {
+        if (!this.isDev) return
+        window.console.dir(...args)
+      },
+      table(...args) {
+        if (!this.isDev) return
+        window.console.table(...args)
+      }
+    }
+
     // Regular
+    console.log('Hey', 'look here')
 
     // Interpolated
+    console.log('I have %s dolars!!', 'one')
+    console.log('I have %f dolars!!', 3.45)
+    console.log('I have %d dolars!!', 3.45)
 
     // Styled
+    console.log('%cStop...', 'font-size:30px; color: red;')
 
     // warning!
+    console.warn('Alert')
 
     // Error :|
+    console.error('Some Error Occur')
 
     // Info
 
     // Testing
+    console.assert(null, 'Message')
 
     // clearing
 
     // Viewing DOM Elements
+    console.dir(document.querySelector('p'))
 
     // Grouping together
+    window.console.group('group1')
+    console.table(dogs, ['name'])
+    window.console.groupEnd('group1')
 
     // counting
+    console.count('Wes')
+    console.count('Wes')
+    console.count('Wes')
+    console.count('Steve')
+    console.count('Steve')
+    console.count('Wes')
 
     // timing
+    console.time('test1')
+    let i, j
+    for (i = 0; i < 100000000; i++) {
+      j++
+    }
+    console.timeEnd('test1')
+
+    console.time('test2')
+    for (let k = 0; k < 100000000; k++) {
+      j++
+    }
+    console.timeEnd('test2')
 
   </script>
 </body>
+
 </html>
